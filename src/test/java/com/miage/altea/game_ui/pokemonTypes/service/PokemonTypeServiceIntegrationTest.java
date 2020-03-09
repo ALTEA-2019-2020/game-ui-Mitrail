@@ -2,6 +2,7 @@ package com.miage.altea.game_ui.pokemonTypes.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,6 +14,7 @@ class PokemonTypeServiceIntegrationTest {
     @Autowired
     PokemonTypeService service;
 
+    @Qualifier("pokemonTypeApiRestTemplate")
     @Autowired
     RestTemplate restTemplate;
 
