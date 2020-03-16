@@ -19,6 +19,11 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Trainer getTrainer(String name) {
-        return null;
+        return this.restTemplate.getForObject("http://localhost:8080/trainers/" + name, Trainer.class);
+    }
+
+    @Override
+    public Trainer[] allTrainers() {
+        return this.restTemplate.getForObject("http://localhost:8080/trainers/", Trainer[].class);
     }
 }
