@@ -1,5 +1,7 @@
 package com.miage.altea.game_ui.controller;
 
+import com.miage.altea.game_ui.pokemonTypes.service.PokemonTypeService;
+import com.miage.altea.game_ui.trainers.bo.Pokemon;
 import com.miage.altea.game_ui.trainers.bo.Trainer;
 import com.miage.altea.game_ui.trainers.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ import java.util.stream.Collectors;
 public class IndexController {
 
     private TrainerService trainerService;
+
+    @Autowired
+    private PokemonTypeService pokemonTypeService;
 
     @Autowired
     IndexController(TrainerService trainerService){
@@ -45,6 +50,12 @@ public class IndexController {
         List<Trainer> trainers = Arrays.stream(trainerService.allTrainers())
                 .filter(trainer -> !trainer.getName().equals(currentUser.getName()))
                 .collect(Collectors.toList());
+
+        trainers.forEach(trainer ->
+                trainer.setTeamType(trainer.getTeam().stream()
+                    .map((Pokemon p) -> pokemonTypeService.getPokemonType(p.getPokemonTypeId()))
+                    .collect(Collectors.toList()))
+        );
         Map<String, Object> map = new HashMap<>();
         // map.put("user", currentUser);
         map.put("trainers", trainers);

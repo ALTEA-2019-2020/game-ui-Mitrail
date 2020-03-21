@@ -28,7 +28,7 @@ public class ProfileController {
     private PokemonTypeService pokemonTypeService;
 
     @GetMapping
-    ModelAndView allTrainers() {
+    ModelAndView myProfil() {
         String currentPrincipal = ((Trainer)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getName();
         Trainer currentUser = trainerService.getTrainer(currentPrincipal);
         List<PokemonType> pokemons = currentUser.getTeam().stream()

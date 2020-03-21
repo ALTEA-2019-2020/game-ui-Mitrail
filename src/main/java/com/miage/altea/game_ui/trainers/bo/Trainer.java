@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import com.miage.altea.game_ui.pokemonTypes.bo.PokemonType;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Trainer implements UserDetails {
     private String name;
     private List<Pokemon> team;
+    private List<PokemonType> teamType;
     private String password;
 
     @Override
