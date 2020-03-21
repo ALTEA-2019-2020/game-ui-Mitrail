@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return trainerService;
     }
 
+    @Autowired
     public void setTrainerService(TrainerService trainerService) {
         this.trainerService = trainerService;
     }
@@ -30,7 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
+    @Bean
     public UserDetailsService userDetailsService() {
         return (String s) -> {
             Trainer t = trainerService.getTrainer(s);
